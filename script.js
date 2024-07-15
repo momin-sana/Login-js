@@ -37,19 +37,21 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     }
 
+    //function to show alert messages
     function displayModal(message) {
         modalMessage.textContent = message;
         modal.style.display = "block";
         setTimeout(function() {
             modal.style.display = "none";
-        }, 5000); 
+        }, 5000); //5sec
     }
 
+    // function to add shaking effect
     function shakeScreen() {
         document.body.classList.add('shake-screen');
         setTimeout(function() {
             document.body.classList.remove('shake-screen');
-        }, 500);
+        }, 500); //0.5s
     }
 
     // Close modal when clicking on close button (×)
@@ -71,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
     cta.addEventListener('click', showLogin);
     joinAcademy.addEventListener('click', showLogin);
 
-
+// signup action in login form
     signupBtn.addEventListener('click', function() {
         if (formTitle.textContent === 'Login') {
             formTitle.textContent = 'Sign Up';
@@ -101,11 +103,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
             `;
 
+            // login action in signup form
             var loginBtn = document.querySelector("#login-btn");
             loginBtn.addEventListener('click', function() {
                 window.location.reload(); // Reload page to switch back to login form
             });
 
+            //signup action in signup form
             var signupSubmitBtn = document.querySelector("#signup-btn");
             signupSubmitBtn.addEventListener('click', function() {
             
@@ -159,6 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    //login action in login form
     var loginBtn = document.querySelector("#login-btn");
     loginBtn.addEventListener('click', function() {
         var emailInput = document.querySelector("#email");
