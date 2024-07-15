@@ -2,8 +2,11 @@ document.addEventListener('DOMContentLoaded', function() {
     var signupBtn = document.querySelector("#signup-btn");
     var formContainer = document.querySelector("#form-container");
     var formTitle = document.querySelector("#form-title");
-    var modal = document.getElementById("myModal");
-    var modalMessage = document.getElementById("modal-message");
+    var errorModel = document.getElementById("errorModel");
+    var errorMessage = document.getElementById("error-message");
+    var successModel = document.getElementById("successModel");
+    var successMessage = document.getElementById("success-message");
+    var closeSuccessButton = successModel.querySelector(".close");
 
     var joinAcademy = document.querySelector("#join-academy")
     var cta = document.querySelector(".cta");
@@ -37,14 +40,32 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     }
 
-    //function to show alert messages
-    function displayModal(message) {
-        modalMessage.textContent = message;
-        modal.style.display = "block";
+    function displayErrorModel(message) {
+        errorMessage.textContent = message;
+        errorModel.style.display = "block";
+        errorModel.classList.add("animated", "shake"); // Add shake class for animation
         setTimeout(function() {
-            modal.style.display = "none";
-        }, 5000); //5sec
-    }
+          errorModel.style.display = "none";
+          errorModel.classList.remove("animated", "shake"); // Remove animation class
+        }, 5000); // 5 seconds
+      }
+      
+      // Function to display success modal with bounceInDown animation
+      function displaySuccessModel(message) {
+        successMessage.textContent = message;
+        successModel.style.display = "block";
+        successModel.classList.add("animated", "bounceInDown"); // Add bounceInDown class for animation
+        if (closeSuccessButton) {
+            closeSuccessButton.addEventListener("click", function() {
+              successModel.style.display = "none";
+              successModel.classList.remove("animated", "bounceInDown"); // Remove animation class
+            });
+          }
+        setTimeout(function() {
+          successModel.style.display = "none";
+          successModel.classList.remove("animated", "bounceInDown"); // Remove animation class
+        }, 5000); // 5 seconds
+      }
 
     // function to add shaking effect
     function shakeScreen() {
@@ -54,26 +75,27 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 500); //0.5s
     }
 
-    // Close modal when clicking on close button (×)
+    // Close Model when clicking on close button (×)
     var closeBtn = document.querySelector(".close");
     if (closeBtn) {
         closeBtn.addEventListener('click', function() {
-            modal.style.display = "none";
+            errorModel.style.display = "none";
+            successModel.style.display = "none";
         });
     }
 
-    // Close modal when clicking outside of it
+    // Close Model when clicking outside of it
     window.addEventListener('click', function(event) {
-        if (event.target === modal) {
-            modal.style.display = "none";
-        }
+        if (event.target === errorModel || event.target === successModel) {
+            errorModel.style.display = "none";
+            successModel.style.display = "none";        }
     });
 
     // Event listener for both cta and join academy button
     cta.addEventListener('click', showLogin);
     joinAcademy.addEventListener('click', showLogin);
 
-// signup action in login form
+// signup action in login
     signupBtn.addEventListener('click', function() {
         if (formTitle.textContent === 'Login') {
             formTitle.textContent = 'Sign Up';
@@ -125,25 +147,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 if (email === "" || password === "" || confirmPassword === "") {
                     console.error("Fields empty");
-                    displayModal("Fields cannot be empty.");
+                    displayErrorModel("Fields cannot be empty.");
                     return;
                 }
 
                 if (!validateEmail(email)) {
                     console.error("Invalid email format.");
-                    displayModal("Please enter a valid email address.");
+                    displayErrorModel("Please enter a valid email address.");
                     return;
                 }
 
                 if (!validatePassword(password)) {
                     console.error("Invalid password format.");
-                    displayModal("Password must be 8-10 characters long, with at least one special character, one number, and no spaces.");
+                    displayErrorModel("Password must be 8-10 characters long, with at least one special character, one number, and no spaces.");
                     return;
                 }
 
                 if (password !== confirmPassword) {
                     console.error("Passwords do not match.");
-                    displayModal("Passwords do not match.");
+                    displayErrorModel("Passwords do not match.");
                     return;
                 }
 
@@ -157,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 localStorage.setItem('userData', JSON.stringify(userData));
                 console.log("Signup data saved to localStorage:", userData);
-                displayModal("Signup successful! You can now log in.");
+                displaySuccessModel("Signup successful! You can now log in.");
                 window.location.reload(); // Reload page to switch to login form
             });
         }
@@ -179,26 +201,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (email === "" || password === "") {
             console.error("Fields empty");
-            displayModal("Fields cannot be empty.");
+            displayErrorModel("Fields cannot be empty.");
             return;
         }
 
         if (!storedUserData) {
             console.error("No user data found.");
             
-            displayModal("No user data found. Please sign up first.");
+            displayErrorModel("No user data found. Please sign up first.");
             return;
         }
 
         if (email !== storedUserData.email || password !== storedUserData.password) {
             console.error("Incorrect email or password.");
             shakeScreen();
-            displayModal("Incorrect email or password.");
+            displayErrorModel("Incorrect email or password.");
             return;
         }
 
         console.log("Login successful for email:", email);
-        displayModal("Login successful!");
+        displaySuccessModel("Login successful!");
         email.value = "";
         password.value = "";
         emailInput.value = "";

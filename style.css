@@ -207,7 +207,8 @@ body {
   transform: translateY(300px);
 }
 
-.modal {
+
+.model {
   display: none;
   position: fixed;
   z-index: 9999;
@@ -219,7 +220,7 @@ body {
   background-color: rgba(0, 0, 0, 0.552);
 }
 
-.modal-content {
+.model-content {
   background-color: #3c496b;
   color: #fff;
   margin: 15% auto;
@@ -230,21 +231,68 @@ body {
   max-width: 400px;
   text-align: center;
   position: relative;
-  animation: shake 0.5s;
   cursor: pointer;
 }
 
+.model.success-model {
+  background-color: rgba(0, 0, 0, 0.5);
+}
 
+.model.success-model .model-content {
+  background-color: #67de81;
+}
+
+.model.success-model #success-message {
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.fireworks {
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto;
+  display: block;
+}
+
+/* Keyframes for shake effect */
 @keyframes shake {
   0%, 100% {
-      transform: translateX(0);
+    transform: translateX(0);
   }
   10%, 30%, 50%, 70%, 90% {
-      transform: translateX(-10px);
+    transform: translateX(-10px);
   }
   20%, 40%, 60%, 80% {
-      transform: translateX(10px);
+    transform: translateX(10px);
   }
+}
+
+/* Keyframes for bounceInDown effect */
+@keyframes bounceInDown {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Apply animations to modals */
+#errorModel {
+  display: none; /* Hide error modal by default */
+  animation: shake 0.5s ease-in-out;
+}
+
+#successModel {
+  display: none; /* Hide success modal by default */
+  animation: bounceInDown 0.5s ease-in-out;
 }
 
 .shake-screen {
