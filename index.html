@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    </head>
+    </head>
+
+<body>
+    <div class="form-container">
+        <div class="wrapper">
+            <div class="login-text">
+                <button class="cta" title="Show login" type="button"><i class="fas fa-chevron-down fa-1x"></i></button>
+                <div class="text" id="form-container">
+                    <h1 id="form-title">Login</h1>
+                    <hr>
+                    <br>
+                    <div class="input-container">
+                        <input type="text" id="email" required>
+                        <label for="email">Email</label>
+                        <span class="underline"></span>
+                      </div>
+                      <br>
+                      <div class="input-container">
+                        <input type="password" id="password" required>
+                        <label for="password">Password</label>
+                        <span class="underline"></span>
+                      </div>
+                    <button class="login-btn" id="login-btn" type="submit">Log In</button>
+                    <button class="signup-btn" id="signup-btn" type="submit">Sign Up</button>
+                </div>
+            </div>
+            <div class="call-text">
+                <h1>Enhance your <span>creative</span> side</h1>
+                <button type="submit" id="join-academy">Join the Academy</button>
+            </div>
+
+        </div>
+    </div>
+    <!-- Modal for alerts -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="modal-message"></p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+
+</html>

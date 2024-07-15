@@ -1,0 +1,252 @@
+body {
+  font-family: 'Raleway', sans-serif;
+  background-color: #e7e7e7;
+}
+.wrapper {
+  width: 800px;
+  height: 599px;
+  position: relative;
+  margin: 3% auto;
+  box-shadow: 2px 18px 70px 0px #039074;
+  overflow: hidden;
+}
+
+.login-text {
+  width: 800px;
+  height:450px;
+  background: linear-gradient(to left, #6896ca, #67de81); 
+  position: absolute;
+  top: -300px;
+  box-sizing: border-box;
+  padding: 6%;
+  transition: all 0.5s ease-in-out;
+  z-index: 11;
+}
+
+.text {
+  margin-left: 20px;
+  color: #fff;
+  display: none;
+  transition: all 0.5s ease-in-out;
+  transition-delay: 0.3s;
+
+  a, a:visited {
+      font-size: 36px;
+      color: #fff;
+      text-decoration: none;  
+      font-weight: bold;
+      display: block;
+  }
+
+  hr {
+    margin-top: 0px;
+    width: 15%;
+    float: left;
+    background-color: #fff;
+    font-size: 10px;
+  }
+
+  .input-container {
+    position: relative;
+    margin-top: 15px;
+  }
+  
+  .input-container input {
+    width: 50%;
+    padding: 2px;
+    border: none;
+    border-bottom: 2px solid #6896ca;
+    background: transparent;
+    color: #fff;
+    font-size: 15px;
+    outline: none;
+  }
+  
+  .input-container label {
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    transform: translateY(-50%);
+    color: #aaa;
+    transition: 0.3s;
+    pointer-events: none;
+  }
+  
+  .input-container input:focus ~ label,
+  .input-container input:not(:placeholder-shown) ~ label {
+    top: 0;
+    transform: translateY(-100%) scale(0.8);
+    color: #717171;
+  }
+  
+  .input-container .underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60%;
+    height: 3px;
+    background: linear-gradient(to right, #3c496b, #6896ca);
+    transform: scaleX(0);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 1, 1);
+  }
+  
+  .input-container input:focus ~ .underline {
+    transform: scaleX(1);
+  }
+
+  button {
+      margin-top: 50px;
+      height: 40px;
+      width: 140px;
+      outline: none;
+  }
+
+  .login-btn {
+      background: #fff;
+      border: none;
+      border-radius: 2px;
+      color: #696a86;
+  }
+
+ .login-btn:hover {
+    background: #3c496b;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .signup-btn {
+      background: transparent;
+      border: 2px solid #fff;;
+      border-radius: 2px;
+      color: #fff;
+      margin-left: 30px;
+  }
+  
+  .signup-btn:hover {
+    background: #fff;
+    color: #3c496b;
+    border-color: #3c496b;
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+
+.cta {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #3c496b;
+  border: 2px solid #fff;
+  position: absolute;
+  bottom: -30px;
+  left: 370px;
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+  z-index: 11;
+  transition: all 0.6s ease-in-out;
+  background-size: 200% auto;
+  background-image: linear-gradient(to right, #67de81, #6896ca);
+  background-position: right center;
+}
+
+.cta:hover {
+  border: 3px solid #3c496b;
+  color: #3c496b;
+  background-position: left center;
+  transform: scale(1.1);
+}
+
+.call-text {
+  background-color: #fff;
+  width: 800px;
+  height: 450px;
+  position: absolute;
+  bottom: 0;
+  padding: 10%;
+  box-sizing: border-box;
+  text-align: center;
+
+  h1 {
+      font-size: 42px;
+      margin-top: 10%;
+      color: #696a86;
+
+      span {
+          color: #333;
+          font-weight: bolder;
+          
+      }
+  }
+
+  button {
+      height: 40px;
+      width: 180px;
+      border: none;
+      border-radius: 20px;
+      background: linear-gradient(to left, #6896ca, #67de81); 
+      color: #fff;
+      font-weight: bolder;
+      margin-top: 30px;
+      cursor: pointer;
+      outline: none;
+  }
+}
+.text button:hover,
+.call-text button:hover {
+  background: #3c496b;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+
+.show-hide {
+  display: block;
+}
+
+.expand {
+  transform: translateY(300px);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.552);
+}
+
+.modal-content {
+  background-color: #3c496b;
+  color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border: 4px solid #4f566a;
+  border-radius: 20%;
+  width: 80%;
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+  animation: shake 0.5s;
+  cursor: pointer;
+}
+
+
+@keyframes shake {
+  0%, 100% {
+      transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+      transform: translateX(-10px);
+  }
+  20%, 40%, 60%, 80% {
+      transform: translateX(10px);
+  }
+}
+
+.shake-screen {
+  animation: shake 0.5s;
+}
